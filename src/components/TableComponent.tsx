@@ -12,10 +12,8 @@ const TableComponent = () =>{
     const dispatch = useDispatch<AppDispatch>();
   
     useEffect(()=>{
-      if (tableDetails.table === null){
       dispatch(getTable())
-      }
-    },[tableDetails])
+    },[])
     return(
         <>
         {tableDetails?.table !== null && tableDetails.isTable ? (<TableContainer component={Paper}>
