@@ -1,10 +1,7 @@
-
-import TableComponent from './components/TableComponent';
+import TableComponent from "./components/TableComponent";
 
 function App() {
-  return (
-    <TableComponent/>
-  );
+  return <TableComponent />;
 }
 
 export default App;

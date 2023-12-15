@@ -2,17 +2,13 @@ import {  createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { ReduxTableDataProps } from "../../commonType";
 
 type TableProps = {
-  value: {
-    isTable: boolean;
-    table: ReduxTableDataProps[] | null;
-  };
+    isLoading: boolean;
+    tableContent: ReduxTableDataProps[] | null;
 };
 
 const initialStateValue: TableProps = {
-  value: {
-    isTable: false,
-    table: null,
-  },
+    isLoading: false,
+    tableContent: null,
 };
 
 const tableSlice = createSlice({
@@ -21,12 +17,12 @@ const tableSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(getTable.pending, (state, action) => {
-        state.value.isTable = false
+      .addCase(getTable.pending, (state) => {
+        state.isLoading = true
       })
       .addCase(getTable.fulfilled, (state, action) => {
-        state.value.isTable = true
-        state.value.table = action.payload
+        state.isLoading = false
+        state.tableContent = action.payload
       });
   },
 });

@@ -8,15 +8,16 @@ import { getTable } from "../redux/features/data-slice";
 
 
 const TableComponent = () =>{
-    const tableDetails = useSelector((state: RootState) => state.table.value);
+    const {tableContent,isLoading} = useSelector((state: RootState) => state.table);
     const dispatch = useDispatch<AppDispatch>();
   
     useEffect(()=>{
       dispatch(getTable())
     },[])
+
     return(
         <>
-        {tableDetails?.table !== null && tableDetails.isTable ? (<TableContainer component={Paper}>
+        {tableContent!== null && !isLoading ?  (<TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
             <TableRow>
@@ -27,7 +28,7 @@ const TableComponent = () =>{
             </TableRow>
           </TableHead>
           <TableBody>
-            {tableDetails?.table.map((row:ReduxTableDataProps) => (
+            {tableContent?.map((row:ReduxTableDataProps) => (
               <TableRow
                 key={row.id}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
